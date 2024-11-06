@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "LaserTag.Mobile",
+    "slug": "LaserTag-Mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon/laser.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/icon/laser.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon/laser.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.anonymous.LaserTag.Mobile"
+    },
+    "web": {
+      "favicon": "./assets/icon/laser.png"
+    }
+  }
+}
