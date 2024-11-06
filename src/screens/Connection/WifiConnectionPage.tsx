@@ -52,7 +52,7 @@ const WifiConnectionPage: React.FC = () => {
       });
       return;
     }  
-    getHostWebSocket().connect('ws://' + hostIP + ':8080/LaserTag');
+    getHostWebSocket().connect('ws://' + hostIP + ':8080/TekHub');
   }
   return (
     <View style={styles.container}>

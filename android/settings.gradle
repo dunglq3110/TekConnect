@@ -44,7 +44,7 @@ if (getRNMinorVersion() >= 75) {
   }
 }
 
-rootProject.name = 'LaserTag.Mobile'
+rootProject.name = 'TekConnect.Mobile'
 
 dependencyResolutionManagement {
   versionCatalogs {

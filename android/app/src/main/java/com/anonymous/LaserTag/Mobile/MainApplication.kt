@@ -1,4 +1,4 @@
-package com.anonymous.LaserTag.Mobile
+package com.anonymous.TekConnect.Mobile
 
 import android.app.Application
 import android.content.res.Configuration

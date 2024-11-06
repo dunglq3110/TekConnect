@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "LaserTag.Mobile",
-    "slug": "LaserTag-Mobile",
+    "name": "TekConnect.Mobile",
+    "slug": "TekConnect-Mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon/laser.png",
@@ -19,7 +19,7 @@
         "foregroundImage": "./assets/icon/laser.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.LaserTag.Mobile"
+      "package": "com.anonymous.TekConnect.Mobile"
     },
     "web": {
       "favicon": "./assets/icon/laser.png"

@@ -109,9 +109,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.anonymous.LaserTag.Mobile'
+    namespace 'com.anonymous.TekConnect.Mobile'
     defaultConfig {
-        applicationId 'com.anonymous.LaserTag.Mobile'
+        applicationId 'com.anonymous.TekConnect.Mobile'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
