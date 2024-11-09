@@ -8,7 +8,7 @@ interface GreetingPageProps {
 export default function GreetingPage({ onContinue }: GreetingPageProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.greetingText}>Welcome to the App!</Text>
+      <Text style={styles.greetingText}>Welcome to TekHub!</Text>
       <Button
         title="Go to Main Page"
         onPress={onContinue} // Call onContinue to hide the GreetingPage

@@ -46,19 +46,28 @@ class GunWebSocketService implements GunWebSocketServiceInterface {
             const rawData = event.data;
     
             // First check if it's a hex string
-            if (typeof rawData === 'string' && this.isHexString(rawData) && rawData.length > 2) {
+            if (typeof rawData === 'string' && this.isHexString(rawData)) {
               console.log('Received hex string:', rawData);
-            
-              // Get the first two characters and convert them to an integer
-              const firstTwoHex = rawData.slice(0, 2);
-              const messageCode = parseInt(firstTwoHex, 16);
-            
-              try {
-                getHostWebSocket().sendMessage(messageCode, 0, "", rawData);
-              } catch (error) {
-                console.error('Failed to send hex message:', error);
-              }
-              return;
+              
+              // Split the string by "|" and filter out empty strings from leading/trailing "|"
+              const hexSegments = rawData.split('|').filter(segment => segment.length > 0);
+              
+              // Process each hex segment
+              hexSegments.forEach(segment => {
+                // Get the first two characters of the segment and convert them to an integer
+                const firstTwoHex = segment.slice(0, 2);
+                const messageCode = parseInt(firstTwoHex, 16);
+        
+                try {
+                  // Replace getHostWebSocket().sendMessage with your actual sending function
+                  getHostWebSocket().sendMessage(messageCode, 0, "", segment);
+                } catch (error) {
+                  console.error('Failed to send hex message for segment:', segment, error);
+                }
+              });
+            } 
+            else {
+              console.error('Invalid hex string format:', rawData);
             }
             
     
@@ -175,7 +184,7 @@ class GunWebSocketService implements GunWebSocketServiceInterface {
   }
   private isHexString(str: string): boolean {
     // Regular expression to check if the string contains only hex characters and "|" separators
-    const hexWithSeparatorRegex = /^[0-9A-Fa-f|]+$/;
+    const hexWithSeparatorRegex = /^\|?(?:[0-9A-Fa-f]{2,})(?:\|[0-9A-Fa-f]{2,})*\|?$/;
     return typeof str === 'string' && hexWithSeparatorRegex.test(str);
   }
 
