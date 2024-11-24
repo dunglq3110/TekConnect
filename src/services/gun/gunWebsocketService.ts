@@ -1,6 +1,6 @@
 // src/services/gunWebsocketService.ts
 import { GunBaseMessage, GunMessageHandler, GunWebSocketServiceInterface, isGunBaseMessage } from './gunTypes';
-import { updateHostConnected, updateGunConnected ,updateMacGun, updateMacVest, updateVestConnected } from '../../store/slices/playerSlice';
+import { updateHostConnected, updateGunConnected, updateMacGun, updateMacVest, updateVestConnected } from '../../store/slices/playerSlice';
 
 import { getHostWebSocket } from '../host/hostGlobalWebSocket';
 import Toast from 'react-native-toast-message';
@@ -44,20 +44,20 @@ class GunWebSocketService implements GunWebSocketServiceInterface {
         this.ws.onmessage = (event: WebSocketMessageEvent) => {
           try {
             const rawData = event.data;
-    
+
             // First check if it's a hex string
             if (typeof rawData === 'string' && this.isHexString(rawData)) {
               console.log('Received hex string:', rawData);
-              
+
               // Split the string by "|" and filter out empty strings from leading/trailing "|"
               const hexSegments = rawData.split('|').filter(segment => segment.length > 0);
-              
+
               // Process each hex segment
               hexSegments.forEach(segment => {
                 // Get the first two characters of the segment and convert them to an integer
                 const firstTwoHex = segment.slice(0, 2);
                 const messageCode = parseInt(firstTwoHex, 16);
-        
+
                 try {
                   // Replace getHostWebSocket().sendMessage with your actual sending function
                   getHostWebSocket().sendMessage(messageCode, 0, "", segment);
@@ -65,12 +65,11 @@ class GunWebSocketService implements GunWebSocketServiceInterface {
                   console.error('Failed to send hex message for segment:', segment, error);
                 }
               });
-            } 
-            else {
-              console.error('Invalid hex string format:', rawData);
+
+              // Stop further processing since it's a hex string
+              return;
             }
-            
-    
+
             // If not hex, try to parse as JSON
             const data = JSON.parse(rawData);
             if (isGunBaseMessage(data)) {
@@ -89,6 +88,7 @@ class GunWebSocketService implements GunWebSocketServiceInterface {
             });
           }
         };
+
 
         this.ws.onerror = (event: Event) => {
           const error = event as WebSocketErrorEvent;
@@ -133,8 +133,7 @@ class GunWebSocketService implements GunWebSocketServiceInterface {
         this.connect();
       }, 3000);
     }
-    else
-    {
+    else {
       Toast.show({
         type: 'error',
         text1: 'Failed to reconnect to Gun',
