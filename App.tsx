@@ -10,7 +10,7 @@ import ConnectionNavigator from './src/screens/Connection/ConnectionNavigator';
 import GamePlayNavigator from './src/screens/GamePlay/GamePlayNavigator'; 
 import Toast from 'react-native-toast-message';
 import GreetingPage from './src/screens/GreetingPage';
-
+import FloatingChatButton from './src/screens/Chat/FloatingChatButton';
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -70,6 +70,7 @@ export default function App() {
           </Drawer.Navigator>
         )}
       </NavigationContainer>
+      <FloatingChatButton />
       <Toast />
     </Provider>
   );
