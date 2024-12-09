@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-
+import {promt} from './promt'
 // Define message interface
 export interface ChatMessage {
   id: string;
@@ -31,7 +31,7 @@ export const sendMessage = createAsyncThunk(
       const state = getState() as { chat: ChatState };
       const existingMessages = state.chat.messages;
 
-      const response = await fetch('http://192.168.1.9:1234/v1/chat/completions', {
+      const response = await fetch('http://127.0.0.1:1234/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export const sendMessage = createAsyncThunk(
         body: JSON.stringify({
           model: 'llama-3.2-1b-instruct',
           messages: [
-            { role: 'system', content: 'You are a helpful assistant.' },
+            { role: 'system', content: promt },
             ...existingMessages.map((msg) => ({ 
               role: msg.sender === 'user' ? 'user' : 'assistant', 
               content: msg.text 

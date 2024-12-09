@@ -31,7 +31,7 @@ const ChatBox: React.FC = () => {
       styles.messageContainer, 
       item.sender === 'user' ? styles.userMessage : styles.aiMessage
     ]}>
-      <Text style={styles.messageText}>{item.text}</Text>
+      <Text style={[ item.sender === 'user' ? styles.userTextColor : styles.aiTextColor ]}>{item.text}</Text>
     </View>
   );
 
@@ -84,12 +84,15 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     backgroundColor: '#007bff',
   },
+  userTextColor: {
+    color: "#fff"
+  },
   aiMessage: {
     alignSelf: 'flex-start',
     backgroundColor: '#e9ecef',
   },
-  messageText: {
-    color: '#000',
+  aiTextColor: {
+    color: "#000",
   },
   inputContainer: {
     flexDirection: 'row',
